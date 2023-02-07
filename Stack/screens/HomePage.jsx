@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useNavigation } from '@react-navigation/native';
+
+import Materialicon from 'react-native-vector-icons/MaterialIcons';
 
 import CardWord from '../Components/Home/CardWords';
 const words = [
@@ -21,6 +24,8 @@ const wordAuthors = ['Steve Jobs', 'Dieter Rams', 'John Maeda', 'Issey Miyake', 
 
 const MILI_TO_DAY = 86400000;
 const HomePage = () => {
+  const navigation = useNavigation();
+
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [currentAuthor, setCurrentAuthor] = useState(wordAuthors[0]);
 
@@ -44,7 +49,12 @@ const HomePage = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: '#0f0e17' }}>
       <ScrollView>
         <View style={styles.containerTop}>
-          <Text style={styles.topText}>Discover</Text>
+          <View>
+            <Text style={styles.topText}>Discover</Text>
+          </View>
+          <TouchableOpacity style={styles.len} onPress={() => navigation.navigate('language')}>
+            <Materialicon name="language" size={26} color={'#ff8906'} />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.wordContianer}>
@@ -59,12 +69,14 @@ const styles = StyleSheet.create({
   containerTop: {
     // backgroundColor: 'blue',
     marginHorizontal: 20,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'flex-start',
     height: 50,
     borderBottomColor: '#a7a9be90',
     borderBottomWidth: 1,
-    paddingBottom: 20,
+    // paddingBottom: 20,
+    flexDirection: 'row',
+    marginTop: 20,
   },
   topText: {
     fontSize: RFValue(24, 680),
@@ -74,6 +86,9 @@ const styles = StyleSheet.create({
   wordContianer: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  len: {
+    marginTop: 6,
   },
 });
 
