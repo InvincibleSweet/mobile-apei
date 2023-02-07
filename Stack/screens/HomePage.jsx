@@ -3,10 +3,13 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-nati
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation } from '@react-navigation/native';
-
 import Materialicon from 'react-native-vector-icons/MaterialIcons';
 
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
 import CardWord from '../Components/Home/CardWords';
+
 const words = [
   'Design is not just what it looks like and feels like. Design is how it works.',
   'Good design is as little design as possible.',
@@ -23,9 +26,18 @@ const words = [
 const wordAuthors = ['Steve Jobs', 'Dieter Rams', 'John Maeda', 'Issey Miyake', 'Tate Linden', 'Saul Bass', 'Paul Rand', 'Robin Mathew', 'Steve Jobs', 'Charles Eames'];
 
 const MILI_TO_DAY = 86400000;
+
 const HomePage = () => {
   const navigation = useNavigation();
 
+  const [fontsLoaded] = useFonts({
+    'Poppins-Medium': require('../../assets/fonts/Poppins/Poppins-Medium.ttf'),
+    'Poppins-Regular': require('../../assets/fonts/Poppins/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('../../assets/fonts/Poppins/Poppins-Bold.ttf'),
+    'Poppins-SemiBold': require('../../assets/fonts/Poppins/Poppins-SemiBold.ttf'),
+
+    Crimsonbold: require('../../assets/fonts/CrimsonPro/CrimsonPro-Bold.ttf'),
+  });
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [currentAuthor, setCurrentAuthor] = useState(wordAuthors[0]);
 
@@ -44,6 +56,19 @@ const HomePage = () => {
     }, MILI_TO_DAY);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+    prepare();
+  }, []);
+
+  if (!fontsLoaded) {
+    return undefined;
+  } else {
+    SplashScreen.hideAsync();
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#0f0e17' }}>
