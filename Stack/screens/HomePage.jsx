@@ -1,9 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { FlatList, TouchableWithoutFeedback, TouchableNativeFeedback } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useNavigation } from '@react-navigation/native';
+import Materialicon from 'react-native-vector-icons/MaterialIcons';
 
+// fonts
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+// styles
+import global from '../../Stack/globalStyle/global';
+
+// components
 import CardWord from '../Components/Home/CardWords';
+import CardPage from '../Components/Home/CardPage';
+
+// img
+import Intro from '../../assets/Img/fid.png';
+import Imux from '../../assets/Img/interview.png';
+import Inter from '../../assets/Img/user-reseacrh.png';
+
+// Word
 const words = [
   'Design is not just what it looks like and feels like. Design is how it works.',
   'Good design is as little design as possible.',
@@ -20,10 +39,45 @@ const words = [
 const wordAuthors = ['Steve Jobs', 'Dieter Rams', 'John Maeda', 'Issey Miyake', 'Tate Linden', 'Saul Bass', 'Paul Rand', 'Robin Mathew', 'Steve Jobs', 'Charles Eames'];
 
 const MILI_TO_DAY = 86400000;
+// const MILI_TO_DAY = 2000;
+
+const DataPage = [
+  {
+    id: 1,
+    txt: 'Introduction to UX',
+    to: 'introux',
+    img: Intro,
+  },
+  {
+    id: 2,
+    txt: 'Important of UX',
+    to: 'impoux',
+    img: Imux,
+  },
+  {
+    id: 3,
+    txt: 'User Interview',
+    to: 'interview',
+    img: Inter,
+  },
+  {
+    id: 4,
+    txt: 'four',
+    to: '',
+  },
+];
 const HomePage = () => {
+  const navigation = useNavigation();
+
+  const [fontsLoaded] = useFonts({
+    Poppins: global.poppins,
+    roboto: global.roboto,
+  });
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [currentAuthor, setCurrentAuthor] = useState(wordAuthors[0]);
+  const [cards, setCards] = useState(DataPage);
 
+  //
   useEffect(() => {
     const interval = setInterval(() => {
       const nextWord = words[Math.floor(Math.random() * words.length)];
@@ -40,15 +94,54 @@ const HomePage = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+    prepare();
+  }, []);
+
+  if (!fontsLoaded) {
+    return undefined;
+  } else {
+    SplashScreen.hideAsync();
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#0f0e17' }}>
       <ScrollView>
         <View style={styles.containerTop}>
-          <Text style={styles.topText}>Discover</Text>
+          <View>
+            <Text style={styles.topText}>Discover</Text>
+          </View>
+          <TouchableOpacity style={styles.len} onPress={() => navigation.navigate('language')}>
+            <Materialicon name="language" size={26} color={'#fffffe90'} />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.wordContianer}>
           <CardWord word={`"${currentWord}" - ${currentAuthor} `} />
+        </View>
+
+        <View style={styles.wrapperCardOne}>
+          <View>
+            <Text style={styles.titleCatOne}>User Expreience Research</Text>
+          </View>
+          {/* <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={DataPage} keyExtractor={item => item.id} renderItem={({ item }) => <Card1 />} /> */}
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            scrollEventThrottle={16}
+            data={DataPage}
+            keyExtractor={i => i.id}
+            renderItem={({ item }) => (
+              <View>
+                <TouchableOpacity onPress={() => navigation.navigate(item.to)}>
+                  <CardPage title={item.txt} img={item.img} />
+                </TouchableOpacity>
+              </View>
+            )}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -58,22 +151,41 @@ const HomePage = () => {
 const styles = StyleSheet.create({
   containerTop: {
     // backgroundColor: 'blue',
-    marginHorizontal: 20,
-    justifyContent: 'center',
+    marginHorizontal: RFValue(10, 680),
+    justifyContent: 'space-between',
     alignItems: 'flex-start',
     height: 50,
     borderBottomColor: '#a7a9be90',
     borderBottomWidth: 1,
-    paddingBottom: 20,
+    // paddingBottom: 20,
+    flexDirection: 'row',
+    marginTop: 20,
   },
   topText: {
     fontSize: RFValue(24, 680),
     color: '#fffffe',
     fontWeight: 'bold',
+    fontFamily: 'roboto',
   },
   wordContianer: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  len: {
+    marginTop: 6,
+  },
+  wrapperCardOne: {
+    marginTop: 50,
+  },
+  titleCatOne: {
+    color: 'white',
+    fontSize: RFValue(18, 680),
+    fontWeight: global.wt_8,
+    fontFamily: 'roboto',
+    marginHorizontal: RFValue(10, 680),
+  },
+  cardOne: {
+    marginTop: 35,
   },
 });
 
