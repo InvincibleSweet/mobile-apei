@@ -30,12 +30,13 @@ const Card = props => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#e53170',
+    // backgroundColor: '#FFFFFF70',
+    borderWidth: 2,
+    borderColor: '#C3F40080',
     marginTop: 20,
-    maxWidth: 400,
-    minWidth: 320,
-    width: 'auto',
-
+    // maxWidth: 400,
+    // minWidth: 320,
+    width: RFValue(345, 680),
     height: RFValue(115, 680),
     maxHeight: 150,
     marginHorizontal: 20,

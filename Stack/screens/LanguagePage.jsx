@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Feather from 'react-native-vector-icons/Feather';
 
+import color from '../../Stack/globalStyle/global';
+
 const ButtonCard = props => {
   const [isSelected, setIsSelected] = useState(false);
   return (
@@ -18,7 +20,7 @@ const ButtonCard = props => {
       }}
     >
       <Text style={{ color: 'white' }}>{props.lan}</Text>
-      <View>{isSelected ? <Feather name="check" size={26} color={'#ff8906'} /> : ''}</View>
+      <View>{isSelected ? <Feather name="check" size={26} color={color.iconOn} /> : ''}</View>
     </View>
   );
 };
@@ -29,7 +31,7 @@ const LanguagePage = props => {
     <SafeAreaView style={{ flex: 1, backgroundColor: '#0f0e17' }}>
       <View style={styles.containerTop}>
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
-          <Octicons name="arrow-left" color={'#ff8906'} size={30} />
+          <Octicons name="arrow-left" color={color.iconOn} size={30} />
         </TouchableOpacity>
         <Text style={styles.textTop}>Bahasa Kontent</Text>
       </View>
