@@ -25,11 +25,11 @@ const CardPage = props => {
   }
 
   return (
-    <View style={{ height: 230, width: global.width - 225, borderRadius: 5, flexDirection: 'column', marginTop: 20, marginHorizontal: 10, backgroundColor: '#34354170' }}>
-      <View style={{ height: 'auto', flex: 1 }}>
-        <Image source={props.img} style={{ width: '100%', resizeMode: 'cover', borderTopLeftRadius: 5, borderTopRightRadius: 5, alignItems: 'center' }} />
+    <View style={{ height: 230, width: global.width - 225, borderRadius: 5, flexDirection: 'column', marginTop: 20, backgroundColor: '#34354170' }}>
+      <View style={{ height: 'auto', flex: 1, padding: 5 }}>
+        <Image source={props.img} style={{ width: '100%', resizeMode: 'cover', borderRadius: 5, alignItems: 'center' }} />
         <View>
-          <Text style={{ fontSize: global.fontSubTitle, color: global.whiteColor, fontFamily: 'poppins', marginTop: 10, paddingHorizontal: 5 }}>{props.title}</Text>
+          <Text style={{ fontSize: global.fontSubTitle, color: global.whiteColor, fontFamily: 'poppins', marginTop: 10, paddingHorizontal: 5, fontWeight: global.wt_8 }}>{props.title}</Text>
         </View>
       </View>
     </View>

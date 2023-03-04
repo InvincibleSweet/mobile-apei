@@ -21,7 +21,8 @@ import CardPage from '../Components/Home/CardPage';
 import Intro from '../../assets/Img/fid.png';
 import Imux from '../../assets/Img/interview.png';
 import Inter from '../../assets/Img/user-reseacrh.png';
-
+import Persona from '../../assets/Img/persona.png';
+import IA from '../../assets/Img/IA.png';
 // Word
 const words = [
   'Design is not just what it looks like and feels like. Design is how it works.',
@@ -62,8 +63,15 @@ const DataPage = [
   },
   {
     id: 4,
-    txt: 'four',
-    to: '',
+    txt: 'User Persona',
+    to: 'persona',
+    img: Persona,
+  },
+  {
+    id: 5,
+    txt: 'Information Architecture',
+    to: 'InforArc',
+    img: IA,
   },
 ];
 const HomePage = () => {
@@ -75,7 +83,6 @@ const HomePage = () => {
   });
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [currentAuthor, setCurrentAuthor] = useState(wordAuthors[0]);
-  const [cards, setCards] = useState(DataPage);
 
   //
   useEffect(() => {
@@ -125,15 +132,19 @@ const HomePage = () => {
 
         <View style={styles.wrapperCardOne}>
           <View>
-            <Text style={styles.titleCatOne}>User Expreience Research</Text>
+            {/* <Text style={styles.titleCatOne}>User Expreience Research</Text> */}
+            <Text style={styles.titleCatOne}>Fundamental User Expreience </Text>
           </View>
-          {/* <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={DataPage} keyExtractor={item => item.id} renderItem={({ item }) => <Card1 />} /> */}
+
           <FlatList
             showsHorizontalScrollIndicator={false}
             horizontal={true}
             scrollEventThrottle={16}
             data={DataPage}
             keyExtractor={i => i.id}
+            ItemSeparatorComponent={() => <View style={{ marginHorizontal: 5 }} />}
+            contentContainerStyle={{ paddingHorizontal: 10 }}
+            removeClippedSubviews={true}
             renderItem={({ item }) => (
               <View>
                 <TouchableOpacity onPress={() => navigation.navigate(item.to)}>
@@ -162,7 +173,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   topText: {
-    fontSize: RFValue(24, 680),
+    fontSize: RFValue(32, 680),
     color: '#fffffe',
     fontWeight: 'bold',
     fontFamily: 'roboto',
@@ -179,7 +190,7 @@ const styles = StyleSheet.create({
   },
   titleCatOne: {
     color: 'white',
-    fontSize: RFValue(18, 680),
+    fontSize: RFValue(24, 680),
     fontWeight: global.wt_8,
     fontFamily: 'roboto',
     marginHorizontal: RFValue(10, 680),

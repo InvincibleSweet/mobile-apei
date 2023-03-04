@@ -9,13 +9,14 @@ import global from '../../globalStyle/global';
 // firebase
 import { db } from '../../../config';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-const database = 'ur-inter';
+const database = 'ur-persona';
 
 // font
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
 const headerhigh = 60;
+
 const HeadTitle = props => {
   const [users, setUsers] = useState([]);
 
@@ -56,14 +57,14 @@ const HeadTitle = props => {
       <View>
         {users.map(t => (
           <View key={t.id}>
-            <Text style={{ marginHorizontal: global.m_20, marginTop: 2.5, color: global.whiteColor, fontSize: global.fontTitle, fontFamily: 'poppins', alignItems: 'center', justifyContent: 'center', paddingLeft: 45 }}>{t.head}</Text>
+            <Text style={{ marginHorizontal: global.m_20, marginTop: 2.5, color: global.whiteColor, fontSize: global.fontTitle, fontFamily: 'poppins', alignItems: 'center', justifyContent: 'center', paddingLeft: 45 }}>{t.Heading}</Text>
           </View>
         ))}
       </View>
     </View>
   );
 };
-const Interview = props => {
+const UserPersona = props => {
   const [users, setUsers] = useState([]);
 
   const scrollY = new Animated.Value(0);
@@ -113,45 +114,43 @@ const Interview = props => {
             <View style={{ marginTop: global.m_60 }}>
               <View style={{ marginHorizontal: global.m_10 }}>
                 <View style={[styles.subhead]}>
-                  <Image source={global.interviewImg} style={styles.img} />
+                  <Image source={global.userPersona} style={styles.img} />
                 </View>
 
                 <View style={styles.subhead}>
                   <Text style={styles.conText}>{item.con_1}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{item.con_1_1}</Text>
                 </View>
-
-                <View style={styles.subhead}>
-                  <Text style={styles.stext}>{item.head_con_1}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_1_1}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_1_2}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_1_3}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_1_4}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_1_5}`}</Text>
-                </View>
-
                 <View style={styles.subhead}>
                   <Text style={styles.stext}>{item.head_con_2}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_2_1}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_2_2}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_2_3}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_2_4}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_2_5}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_2_1}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_2_2}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_2_3}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_2_4}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_2_5}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_2_6}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_2_7}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_2_8}`}</Text>
                 </View>
 
                 <View style={styles.subhead}>
                   <Text style={styles.stext}>{item.head_con_3}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_3_1}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_3_1_1}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_3_2_1}`}</Text>
-                </View>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_3_1}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_3_2}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_3_3}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_3_4}`}</Text>
 
-                <View style={styles.subhead}>
-                  <Text style={styles.stext}>{item.head_con_4}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_4_1}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_4_2}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_4_3}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_4_4}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_4_5}`}</Text>
+                  <View style={styles.subPoin}>
+                    <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_3_4_1}`}</Text>
+                    <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_3_4_2}`}</Text>
+                  </View>
+
+                  <View style={styles.subhead}>
+                    <Text style={styles.stext}>{item.head_con_4}</Text>
+                    <Text style={[styles.conText, styles.mtText]}>{item.con_4_1}</Text>
+                    <Text style={[styles.conText, styles.mtText]}>{item.con_4_1_1}</Text>
+                    <Text style={[styles.conText, styles.mtText]}>{item.con_4_1_2}</Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -202,8 +201,11 @@ const styles = StyleSheet.create({
   img: {
     width: global.width - 20,
     height: 200,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     borderRadius: 10,
   },
+  subPoin: {
+    paddingLeft: 20,
+  },
 });
-export default Interview;
+export default UserPersona;

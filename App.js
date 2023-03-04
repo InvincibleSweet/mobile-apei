@@ -5,11 +5,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import TabBar from './Stack/Components/Navigate/TabBar';
 import Language from './Stack/screens/LanguagePage';
-// import DetailsCard from './Stack/screens/FirstCategory/IntroUX';
+
 import IntroUX from './Stack/screens/FirstCategory/IntroUX';
 import ImpoUX from './Stack/screens/FirstCategory/ImportantUX';
 import Interv from './Stack/screens/FirstCategory/interview';
-import global from './Stack/globalStyle/global';
+import UserPersona from './Stack/screens/FirstCategory/UserPersona';
+import InformationArchi from './Stack/screens/FirstCategory/InformationArchi';
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -26,6 +27,8 @@ const App = () => {
         <Stack.Screen name="introux" component={IntroUX} />
         <Stack.Screen name="impoux" component={ImpoUX} />
         <Stack.Screen name="interview" component={Interv} />
+        <Stack.Screen name="persona" component={UserPersona} />
+        <Stack.Screen name="InforArc" component={InformationArchi} />
       </Stack.Navigator>
     </NavigationContainer>
   );

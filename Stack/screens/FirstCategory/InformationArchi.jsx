@@ -4,24 +4,27 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import { useState, useEffect } from 'react';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
+// style
 import global from '../../globalStyle/global';
 
 // firebase
 import { db } from '../../../config';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-const database = 'ur-inter';
+const database = 'IA';
 
 // font
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
+// stickyheader
 const headerhigh = 60;
+
 const HeadTitle = props => {
   const [users, setUsers] = useState([]);
 
   const [fontsLoaded] = useFonts({
-    poppins: global.poppins,
     roboto: global.roboto,
+    poppins: global.poppins,
   });
 
   const usersCollectionRef = collection(db, database);
@@ -56,14 +59,15 @@ const HeadTitle = props => {
       <View>
         {users.map(t => (
           <View key={t.id}>
-            <Text style={{ marginHorizontal: global.m_20, marginTop: 2.5, color: global.whiteColor, fontSize: global.fontTitle, fontFamily: 'poppins', alignItems: 'center', justifyContent: 'center', paddingLeft: 45 }}>{t.head}</Text>
+            <Text style={{ marginHorizontal: global.m_20, marginTop: 2.5, color: global.whiteColor, fontSize: global.fontTitle, fontFamily: 'poppins' }}>{t.heading}</Text>
           </View>
         ))}
       </View>
+      <View></View>
     </View>
   );
 };
-const Interview = props => {
+const InformationArchi = props => {
   const [users, setUsers] = useState([]);
 
   const scrollY = new Animated.Value(0);
@@ -72,7 +76,6 @@ const Interview = props => {
     inputRange: [0, headerhigh],
     outputRange: [0, -headerhigh],
   });
-
   const usersCollectionRef = collection(db, database);
   useEffect(() => {
     const getUsers = async () => {
@@ -84,8 +87,8 @@ const Interview = props => {
   }, []);
 
   const [fontsLoaded] = useFonts({
-    poppins: global.poppins,
     roboto: global.roboto,
+    poppins: global.poppins,
   });
   useEffect(() => {
     async function prepare() {
@@ -113,7 +116,7 @@ const Interview = props => {
             <View style={{ marginTop: global.m_60 }}>
               <View style={{ marginHorizontal: global.m_10 }}>
                 <View style={[styles.subhead]}>
-                  <Image source={global.interviewImg} style={styles.img} />
+                  <Image source={global.iamage} style={styles.img} />
                 </View>
 
                 <View style={styles.subhead}>
@@ -121,37 +124,42 @@ const Interview = props => {
                 </View>
 
                 <View style={styles.subhead}>
-                  <Text style={styles.stext}>{item.head_con_1}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_1_1}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_1_2}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_1_3}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_1_4}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_1_5}`}</Text>
-                </View>
-
-                <View style={styles.subhead}>
                   <Text style={styles.stext}>{item.head_con_2}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_2_1}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_2_2}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_2_3}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_2_4}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_2_5}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_2}`}</Text>
                 </View>
 
                 <View style={styles.subhead}>
                   <Text style={styles.stext}>{item.head_con_3}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_3_1}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_3_1_1}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_3_2_1}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_3}`}</Text>
                 </View>
 
                 <View style={styles.subhead}>
                   <Text style={styles.stext}>{item.head_con_4}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_4_1}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_4_2}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_4_3}`}</Text>
-                  <Text style={[styles.conText, styles.mtText]}>{`• ${item.con_4_4}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_4}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_4_1}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_4_2}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_4_3}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_4_4}`}</Text>
                   <Text style={[styles.conText, styles.mtText]}>{`${item.con_4_5}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_4_6}`}</Text>
+                </View>
+
+                <View style={styles.subhead}>
+                  <Text style={styles.stext}>{item.head_con_5}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_5}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_5_1}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_5_2}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_5_3}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_5_4}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_5_5}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_5_6}`}</Text>
+                </View>
+
+                <View style={styles.subhead}>
+                  <Text style={styles.stext}>{item.head_con_6}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_6}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_6_1}`}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_6_2}`}</Text>
                 </View>
               </View>
             </View>
@@ -163,13 +171,19 @@ const Interview = props => {
   );
 };
 const styles = StyleSheet.create({
+  heading: {
+    color: 'white',
+  },
+  text: {
+    color: 'white',
+  },
   containerTop: {
     flexDirection: 'row',
     paddingHorizontal: 20,
     paddingVertical: 10,
     backgroundColor: global.primary,
     alignItems: 'center',
-    // justifyContent: 'space-between',
+    justifyContent: 'space-between',
     // marginTop: global.mt_20,
     position: 'absolute',
 
@@ -194,16 +208,15 @@ const styles = StyleSheet.create({
     fontWeight: global.wt_4,
     color: global.second,
     fontFamily: 'poppins',
-    lineHeight: 30,
   },
   mtText: {
     marginVertical: global.m_10,
   },
   img: {
     width: global.width - 20,
-    height: 200,
-    resizeMode: 'cover',
-    borderRadius: 10,
+    height: 400,
+    resizeMode: 'stretch',
+    borderRadius: 20,
   },
 });
-export default Interview;
+export default InformationArchi;

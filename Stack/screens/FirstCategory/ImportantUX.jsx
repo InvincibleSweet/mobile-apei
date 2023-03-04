@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TouchableWithoutFeedback, Animated } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableWithoutFeedback, Animated, Image } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import Octicons from 'react-native-vector-icons/Octicons';
 import { useState, useEffect } from 'react';
@@ -113,9 +113,13 @@ const ImportantUX = props => {
           renderItem={({ item }) => (
             <View style={{ marginTop: global.m_60 }}>
               <View style={{ marginHorizontal: global.m_10 }}>
+                <View style={[styles.subhead]}>
+                  <Image source={global.impux} style={styles.img} />
+                </View>
                 <View style={styles.subhead}>
                   <Text style={styles.stext}>{item.heading}</Text>
                   <Text style={styles.conText}>{item.con_1}</Text>
+                  <Text style={[styles.conText, styles.mtText]}>{`${item.con_1_1}`}</Text>
                 </View>
               </View>
             </View>
@@ -167,6 +171,12 @@ const styles = StyleSheet.create({
   },
   mtText: {
     marginVertical: global.m_10,
+  },
+  img: {
+    width: global.width - 20,
+    height: 200,
+    resizeMode: 'cover',
+    borderRadius: 10,
   },
 });
 export default ImportantUX;

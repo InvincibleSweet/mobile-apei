@@ -8,9 +8,10 @@ export default {
   primary: '#0f0e17',
   // primary: '#2D2D2D',
 
-  second: '#EDEDED',
+  second: '#E5E5E5',
   whiteColor: '#eff0f3',
   iconOn: '#C3F400',
+  // iconOn: '#D3F36B',
   m_20: 20,
   m_40: 40,
   m_60: 60,
@@ -24,7 +25,7 @@ export default {
   fontSubTitle: RFValue(18, 680),
   fontText: RFValue(16, 680),
   wt_8: '800',
-
+  wt_7: '700',
   wt_6: '600',
   wt_5: '500',
   wt_4: '400',
@@ -33,4 +34,7 @@ export default {
   roboto: require('../../assets/fonts/Roboto/RobotoCondensed-Regular.ttf'),
   skillDesign: require('../../assets/Img/skillux.png'),
   interviewImg: require('../../assets/Img/interviewperson.jpg'),
+  userPersona: require('../../assets/Img/man-persona.png'),
+  impux: require('../../assets/Img/imporuxx.jpg'),
+  iamage: require('../../assets/Img/iamage.png'),
 };
